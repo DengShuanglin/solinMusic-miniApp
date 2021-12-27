@@ -1,2 +1,3 @@
 Solin Music MiniApp
-https://img.shields.io/github/issues/DengShuanglin/SolinMusic-MiniApp
+[![GitHub issues](https://img.shields.io/github/issues/DengShuanglin/SolinMusic-MiniApp)](https://github.com/DengShuanglin/SolinMusic-MiniApp/issues)
+
