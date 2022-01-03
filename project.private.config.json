@@ -19,7 +19,7 @@
           "scene": null
         },
         {
-          "name": "视频详情页",
+          "name": "video-detail",
           "pathName": "pages/video-detail/index",
           "query": "id=14480854",
           "scene": null,
