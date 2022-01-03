@@ -1,0 +1,23 @@
+{
+  "name": "SolinMusic-MiniApp",
+  "version": "1.0.0",
+  "description": "Solin Music MiniApp",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DengShuanglin/SolinMusic-MiniApp.git"
+  },
+  "keywords": [],
+  "author": "Shuanglin Deng <shuanglindev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DengShuanglin/SolinMusic-MiniApp/issues"
+  },
+  "homepage": "https://github.com/DengShuanglin/SolinMusic-MiniApp#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.10.0"
+  }
+}

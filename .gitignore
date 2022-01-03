@@ -20,3 +20,6 @@ lerna-debug.log*
 .env
 .env.test
 .env.production
+
+# wechat mini-program package
+miniprogram_npm
