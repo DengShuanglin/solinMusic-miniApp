@@ -1,4 +1,5 @@
 const BASE_URL = "http://123.207.32.32:9001";
+
 class NativeRequest {
   request(url = "", method = "GET", params = {}) {
     return new Promise((resolve, reject) => {
@@ -13,8 +14,8 @@ class NativeRequest {
         enableHttp2: true,
         enableQuic: true,
         timeout: 5000,
-        success: (result) => resolve(result),
-        fail: (res) => reject(res),
+        success: (result) => resolve(result.data),
+        fail: reject,
         // complete: (res) => {},
       });
     });

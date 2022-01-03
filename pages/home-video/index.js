@@ -12,12 +12,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    getTopMvList(0).then((res) => {
-      this.setData({
-        mvList: res.data.data,
-      });
-    });
+  onLoad: async function (options) {
+    const res = await getTopMvList(0);
+    this.setData({ mvList: res.data });
   },
 
   /**
