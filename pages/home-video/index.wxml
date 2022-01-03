@@ -1,5 +1,9 @@
-<view>
- <block wx:for="{{mvList}}" wx:key="id">
-  <view>{{item.name}}</view>
- </block>
+<view class="video">
+  <view class="item" wx:for="{{mvList}}" wx:key="id">
+    <video-list-item 
+      item="{{item}}" 
+      bindtap="handleVideoItemClick"
+      data-item="{{item}}">
+    </video-list-item>
+  </view>
 </view>

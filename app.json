@@ -1,5 +1,9 @@
 {
-  "pages": ["pages/home-music/index", "pages/home-video/index"],
+  "pages": [
+    "pages/home-music/index",
+    "pages/home-video/index",
+    "pages/video-detail/index"
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

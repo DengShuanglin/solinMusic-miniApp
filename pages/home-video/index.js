@@ -7,14 +7,42 @@ Page({
    */
   data: {
     mvList: [],
+    hasMore: true,
+  },
+
+  async getTopMVData(offset) {
+    if (!this.data.hasMore) return;
+
+    wx.showNavigationBarLoading();
+    const res = await getTopMvList(offset);
+
+    let newData = this.data.mvList;
+    if (offset === 0) {
+      newData = res.data;
+    } else {
+      newData = newData.concat(res.data);
+    }
+
+    this.setData({ mvList: newData });
+    this.setData({ hasMore: res.hasMore });
+    wx.hideNavigationBarLoading();
+    if (offset === 0) {
+      wx.stopPullDownRefresh();
+    }
+  },
+
+  handleVideoItemClick(event) {
+    const id = event.currentTarget.dataset.item.id;
+    wx.navigateTo({
+      url: `/pages/video-detail/index?id=${id}`,
+    });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: async function (options) {
-    const res = await getTopMvList(0);
-    this.setData({ mvList: res.data });
+  onLoad: function (options) {
+    this.getTopMVData(0);
   },
 
   /**
@@ -40,12 +68,16 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: async function () {
+    this.getTopMVData(0);
+  },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: async function () {
+    this.getTopMVData(this.data.mvList.length);
+  },
 
   /**
    * 用户点击右上角分享
