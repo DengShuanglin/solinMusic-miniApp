@@ -47,7 +47,7 @@
     "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.6",
+  "libVersion": "2.21.2",
   "appid": "wx0e741eb5ef21d554",
   "projectname": "SolinMusic-MiniApp",
   "debugOptions": {
