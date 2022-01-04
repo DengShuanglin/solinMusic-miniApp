@@ -19,3 +19,7 @@
     </swiper-item>
   </block>
 </swiper>
+
+<view class="recommond-song">
+  <area-header title='推荐歌曲'></area-header>
+</view>
