@@ -19,3 +19,17 @@ export function getRankList(idx) {
     idx,
   });
 }
+
+/**
+ *
+ * @param {*} cat cat -> category 类别
+ * @param {*} limit
+ * @param {*} offset
+ */
+export function getSongMenu(cat = "全部", limit = 6, offset = 0) {
+  return nativeRequest.get("/top/playlist", {
+    cat,
+    limit,
+    offset,
+  });
+}

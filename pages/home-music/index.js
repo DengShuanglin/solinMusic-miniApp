@@ -1,6 +1,6 @@
 // pages/home-music/index.js
 import { rankingStore } from "../../store/index";
-import { getBannerData } from "../../service/api_music";
+import { getBannerData, getSongMenu } from "../../service/api_music";
 import queryRect from "../../utils/query-rect";
 import throttle from "../../utils/throttle";
 
@@ -15,11 +15,21 @@ Page({
     banners: [],
 
     recommendSongs: [],
+    hotSongMenu: [],
+    recommendSongMenu: [],
   },
 
   getMusicData() {
     getBannerData().then((res) => {
       this.setData({ banners: res.banners });
+    });
+
+    getSongMenu().then((res) => {
+      this.setData({ hotSongMenu: res.playlists });
+    });
+
+    getSongMenu("华语").then((res) => {
+      this.setData({ recommendSongMenu: res.playlists });
     });
   },
 
@@ -32,6 +42,7 @@ Page({
   handleSwiperImageLoaded() {
     throttleQueryRect(".swiper-image").then((res) => {
       const rect = res[0];
+      if (!rect.height) return;
       this.setData({ swiperHeight: rect.height });
     });
   },
