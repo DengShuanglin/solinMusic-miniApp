@@ -17,30 +17,13 @@ const rankingStore = new FlexEventStore({
   },
   actions: {
     getRankListDataAction(ctx) {
-      getRankList(0).then((res) => {
-        ctx.hotRanking = res.playlist;
-      });
       // 0: 新歌榜 1: 热门榜 2: 原创榜 3: 飙升榜
-      // for (let i = 0; i < 4; i++) {
-      //   getRankList(i).then((res) => {
-      //     const rankingName = rankingMap[i];
-      //     ctx[rankingName] = res.playlist;
-      //     // switch(i) {
-      //     //   case 0:
-      //     //     ctx.newRanking = res.playlist
-      //     //     break;
-      //     //   case 1:
-      //     //     ctx.hotRanking = res.playlist
-      //     //     break;
-      //     //   case 2:
-      //     //     ctx.originRanking = res.playlist
-      //     //     break;
-      //     //   case 3:
-      //     //     ctx.upRanking = res.playlist
-      //     //     break;
-      //     // }
-      //   });
-      // }
+      for (let i = 0; i < 4; i++) {
+        getRankList(i).then((res) => {
+          const rankingName = rankingMap[i];
+          ctx[rankingName] = res.playlist;
+        });
+      }
     },
   },
 });

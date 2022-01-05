@@ -17,6 +17,7 @@ Page({
     recommendSongs: [],
     hotSongMenu: [],
     recommendSongMenu: [],
+    rankings: { 0: {}, 2: {}, 3: {} },
   },
 
   getMusicData() {
@@ -47,17 +48,40 @@ Page({
     });
   },
 
+  getRankingHandler: function (idx) {
+    return (res) => {
+      if (Object.keys(res).length === 0) return;
+      console.log("idx:", idx);
+      const name = res.name;
+      const coverImgUrl = res.coverImgUrl;
+      const playCount = res.playCount;
+      const songList = res.tracks.slice(0, 3);
+      const rankingObj = { name, coverImgUrl, playCount, songList };
+      const newRankings = { ...this.data.rankings, [idx]: rankingObj };
+      this.setData({
+        rankings: newRankings,
+      });
+      console.log(this.data.rankings);
+    };
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getMusicData();
+
     rankingStore.dispatch("getRankListDataAction");
+
     rankingStore.onState("hotRanking", (res) => {
       if (!res.tracks) return;
       const recommendSongs = res.tracks.slice(0, 6);
       this.setData({ recommendSongs });
     });
+
+    rankingStore.onState("newRanking", this.getRankingHandler(0));
+    rankingStore.onState("originRanking", this.getRankingHandler(2));
+    rankingStore.onState("upRanking", this.getRankingHandler(3));
   },
 
   /**
