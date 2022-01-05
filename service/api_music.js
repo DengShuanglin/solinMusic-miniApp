@@ -9,3 +9,13 @@ export function getBannerData(type = "2") {
     type,
   });
 }
+
+/**
+ *
+ * @param {*} idx 0: 新歌榜 | 1: 热门榜 | 2: 原创榜 | 3: 飙升榜
+ */
+export function getRankList(idx) {
+  return nativeRequest.get("/top/list", {
+    idx,
+  });
+}

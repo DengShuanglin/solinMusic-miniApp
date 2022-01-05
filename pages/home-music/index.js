@@ -1,4 +1,5 @@
 // pages/home-music/index.js
+import { rankingStore } from "../../store/index";
 import { getBannerData } from "../../service/api_music";
 import queryRect from "../../utils/query-rect";
 import throttle from "../../utils/throttle";
@@ -12,6 +13,8 @@ Page({
   data: {
     swiperHeight: 0,
     banners: [],
+
+    recommendSongs: [],
   },
 
   getMusicData() {
@@ -38,6 +41,12 @@ Page({
    */
   onLoad: function (options) {
     this.getMusicData();
+    rankingStore.dispatch("getRankListDataAction");
+    rankingStore.onState("hotRanking", (res) => {
+      if (!res.tracks) return;
+      const recommendSongs = res.tracks.slice(0, 6);
+      this.setData({ recommendSongs });
+    });
   },
 
   /**

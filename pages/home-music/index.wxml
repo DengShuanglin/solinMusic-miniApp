@@ -20,6 +20,12 @@
   </block>
 </swiper>
 
-<view class="recommond-song">
-  <area-header title='推荐歌曲'></area-header>
+<!-- 3.推荐歌曲 -->
+<view class="recommend-song" wx:if="{{recommendSongs.length > 0}}">
+  <area-header title="推荐歌曲"></area-header>
+  <view class="song-list">
+    <block wx:for="{{recommendSongs}}" wx:key="id">
+      <song-list-item item="{{item}}"></song-list-item>
+    </block>
+  </view>
 </view>
