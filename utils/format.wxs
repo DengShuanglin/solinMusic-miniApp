@@ -1,4 +1,7 @@
 function formatCount(count) {
+  if (!count) {
+    return 0;
+  }
   var counter = parseInt(count);
   if (counter > 100000000) {
     return (counter / 100000000).toFixed(1) + "亿";

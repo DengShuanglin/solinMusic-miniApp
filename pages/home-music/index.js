@@ -1,5 +1,5 @@
 // pages/home-music/index.js
-import { rankingStore } from "../../store/index";
+import { rankingStore, rankingMap } from "../../store/index";
 import { getBannerData, getSongMenu } from "../../service/api_music";
 import queryRect from "../../utils/query-rect";
 import throttle from "../../utils/throttle";
@@ -51,7 +51,6 @@ Page({
   getRankingHandler: function (idx) {
     return (res) => {
       if (Object.keys(res).length === 0) return;
-      console.log("idx:", idx);
       const name = res.name;
       const coverImgUrl = res.coverImgUrl;
       const playCount = res.playCount;
@@ -61,8 +60,23 @@ Page({
       this.setData({
         rankings: newRankings,
       });
-      console.log(this.data.rankings);
     };
+  },
+
+  navigateToDetailSongsPage: function (rankingName) {
+    wx.navigateTo({
+      url: `/pages/detail-songs/index?ranking=${rankingName}&type=rank`,
+    });
+  },
+
+  handleMoreClick: function () {
+    this.navigateToDetailSongsPage("hotRanking");
+  },
+
+  handleRankingItemClick: function (event) {
+    const idx = event.currentTarget.dataset.idx;
+    const rankingName = rankingMap[idx];
+    this.navigateToDetailSongsPage(rankingName);
   },
 
   /**

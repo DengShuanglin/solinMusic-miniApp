@@ -33,3 +33,13 @@ export function getSongMenu(cat = "全部", limit = 6, offset = 0) {
     offset,
   });
 }
+
+/**
+ * 获取歌曲菜单详细信息
+ * @param {*} id
+ */
+export function getSongMenuDetail(id) {
+  return nativeRequest.get("/playlist/detail/dynamic", {
+    id,
+  });
+}

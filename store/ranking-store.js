@@ -28,4 +28,4 @@ const rankingStore = new FlexEventStore({
   },
 });
 
-export { rankingStore };
+export { rankingStore, rankingMap };
